@@ -3,7 +3,8 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:BlogsiteMobile.Views"
        Title="BlogsiteMobile"
-       x:Class="BlogsiteMobile.AppShell">
+       x:Class="BlogsiteMobile.AppShell"
+       BackgroundColor="#6F7378">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -14,14 +15,14 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="#2196F3" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.BackgroundColor" Value="#4C4E52" />
+                <Setter Property="Shell.ForegroundColor" Value="#ABB0B8" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="#2196F3" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#4C4E52" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#4C4E52"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#4C4E52"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
@@ -40,13 +41,13 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="#2196F3" />
+                                    <Setter Property="BackgroundColor" Value="#4C4E52" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="White" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#2196F3" />
+                                    <Setter Property="BackgroundColor" Value="#6F7378" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -63,7 +64,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="#2196F3" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="White" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogsiteMobile.Android", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogsiteMobile.iOS", "BlogsiteMobile\BlogsiteMobile.iOS\BlogsiteMobile.iOS.csproj", "{7B7F0969-8572-4636-8192-86B599E6F67A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogsiteMobile", "BlogsiteMobile\BlogsiteMobile\BlogsiteMobile.csproj", "{218E3227-8BAA-4E06-8780-DD1D6939FD42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogsiteMobile", "BlogsiteMobile\BlogsiteMobile\BlogsiteMobile.csproj", "{218E3227-8BAA-4E06-8780-DD1D6939FD42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

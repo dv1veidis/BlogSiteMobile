@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BlogsiteMobile.Views.AboutPage"
              xmlns:vm="clr-namespace:BlogsiteMobile.ViewModels"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="#6F7378">
     
     <ContentPage.BindingContext>
         <vm:AboutViewModel />

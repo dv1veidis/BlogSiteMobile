@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="BlogsiteMobile.Style">
+
+    <!-- Define your modern style based on your app's design guidelines -->
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="#333333" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="Margin" Value="5" />
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#007BFF" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="10" />
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="#F0F0F0" />
+        <Setter Property="TextColor" Value="#333333" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="PlaceholderColor" Value="#AAAAAA" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+    <!-- Add more styles for other UI elements as per your requirements -->
+
+</ResourceDictionary>

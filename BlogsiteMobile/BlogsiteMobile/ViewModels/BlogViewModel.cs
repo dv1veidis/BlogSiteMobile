@@ -81,7 +81,20 @@ namespace BlogsiteMobile.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(BlogDetailPage)}?{nameof(BlogDetailViewModel.Id)}={blogPost.Id}");
+
+            BlogDetailViewModel blogDetailViewModel = new BlogDetailViewModel();
+
+            // Set the Id property with the value from blogPost
+            blogDetailViewModel.Id = blogPost.Id;
+            blogDetailViewModel.BlogPostTitle = blogPost.BlogPostTitle;
+            blogDetailViewModel.Text = blogPost.Text;
+            blogDetailViewModel.Author = blogPost.Author;
+
+            //await Shell.Current.GoToAsync($"{nameof(BlogDetailPage)}?{nameof(BlogDetailViewModel.Id)}={blogPost.Id}");
+            await Shell.Current.Navigation.PushAsync(new BlogDetailPage()
+            {
+                BindingContext = blogDetailViewModel
+            });
         }
     }
 }
