@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,11 +11,11 @@ namespace BlogsiteMobile.Models
 {
     public class Reaction
     {
-        [Key]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         [Required]
         [Display(Name = "ApplicationUserId")]
-        public string ApplicationUserId { get; set; }
+        public int ApplicationUserId { get; set; }
         public string Action { get; set; }
         [Required]
         [Display(Name = "BlogPost")]

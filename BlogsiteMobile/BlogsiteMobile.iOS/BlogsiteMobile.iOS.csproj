@@ -142,4 +142,10 @@
       <Name>BlogsiteMobile</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pngwing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\YourBlogs.png" />
+  </ItemGroup>
 </Project>

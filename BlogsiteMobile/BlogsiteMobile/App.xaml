@@ -26,25 +26,42 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
+                <Setter Property="Margin" Value="5" />
             </Style>
             <Style TargetType="Entry">
                 <Setter Property="BackgroundColor" Value="#F0F0F0" />
-                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="TextColor" Value="#323232" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="PlaceholderColor" Value="#AAAAAA" />
                 <Setter Property="HeightRequest" Value="40" />
-                <Setter Property="Margin" Value="10" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="TextColor" Value="#293241" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="Margin" Value="5" />
+                <Setter Property="Margin" Value="1" />
             </Style>
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-                <Setter Property="BackgroundColor" Value="#6F7378" />
+                <Setter Property="BackgroundColor" Value="#98c1d9" />
+            </Style>
+            <Style TargetType="Shell">
+                <Setter Property="BackgroundColor" Value="#3d5a80" />
+            </Style>
+            <Style x:Key="ListItemTextStyle" TargetType="Label">
+                <!-- Define the style properties for the label -->
+                <!-- Example: -->
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="Black" />
+                <!-- Add more style properties as needed -->
+            </Style>
+            <Style x:Key="ListItemDetailTextStyle" TargetType="Label">
+                <!-- Define the style properties for the label -->
+                <!-- Example: -->
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="Gray" />
+                <!-- Add more style properties as needed -->
             </Style>
         </ResourceDictionary>
     </Application.Resources>

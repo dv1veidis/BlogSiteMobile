@@ -1,5 +1,4 @@
 ﻿using BlogsiteMobile.Models;
-using BlogsiteMobile.Services;
 using BlogsiteMobile.Views;
 using System;
 using System.Collections.Generic;
@@ -7,14 +6,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace BlogsiteMobile.ViewModels
 {
-    public class BlogViewModel : BaseViewModel, INotifyPropertyChanged
+    public class UserBlogViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public bool isReload = false;
         BlogPost changedBlog = new BlogPost();
@@ -26,16 +24,17 @@ namespace BlogsiteMobile.ViewModels
         private BlogPost _blogPost;
         private string _selectedItem;
         private bool filter;
-        private string _userNameFilter;
-        public BlogViewModel()
+        private int _userId;
+        public UserBlogViewModel()
         {
 
             LikeCommand = new Command(OnLike);
             DislikeCommand = new Command(OnDislike);
             FilterCommand = new Command(Filter);
-            Title = "Browse";
+            Title = "Your Blogs";
             BlogPostsView = new ObservableCollection<BlogPost>();
             LoadBlogPostsCommand = new Command(async () => await ExecuteLoadBlogPostsCommand());
+            _userId = (int)App.Current.Properties["UserId"];
 
             BlogPostTapped = new Command<BlogPost>(OnBlogPostSelected);
 
@@ -54,11 +53,6 @@ namespace BlogsiteMobile.ViewModels
                 }
             }
         }
-        public string UserNameFilter
-        {
-            get => _userNameFilter;
-            set => SetProperty(ref _userNameFilter, value);
-        }
         public Command LikeCommand { get; }
         public Command DislikeCommand { get; }
         private async void Filter()
@@ -66,7 +60,6 @@ namespace BlogsiteMobile.ViewModels
             filter = true;
             await ExecuteLoadBlogPostsCommand();
             SelectedItem = null;
-            UserNameFilter = null;
             // This will pop the current page off the navigation stack
         }
 
@@ -106,21 +99,11 @@ namespace BlogsiteMobile.ViewModels
                 }
                 else
                 {
-                    if (filter && !String.IsNullOrWhiteSpace(SelectedItem) || !String.IsNullOrWhiteSpace(UserNameFilter))
+                    if (filter && !String.IsNullOrWhiteSpace(SelectedItem))
                     {
                         List<BlogPost> BlogPosts = new List<BlogPost>();
-                        if (!String.IsNullOrWhiteSpace(SelectedItem) && !String.IsNullOrWhiteSpace(UserNameFilter))
-                        {
-                            BlogPosts = await BlogPostStore.GetAllFromUserAndCategory(_userNameFilter, _selectedItem);
-                        }
-                        else if (!String.IsNullOrWhiteSpace(SelectedItem))
-                        {
-                            BlogPosts = await BlogPostStore.GetAllFromCategory(_selectedItem);
-                        }
-                        else
-                        {
-                            BlogPosts = await BlogPostStore.GetAllFromUserName(_userNameFilter);
-                        }
+                        BlogPosts = await BlogPostStore.GetAllFromUserIdAndCategory(_userId, _selectedItem);
+
                         int initialCount = BlogPostsView.Count();
                         BlogPostsView.Clear();
                         bool removalSuccessful = BlogPostsView.Count < initialCount;
@@ -147,7 +130,7 @@ namespace BlogsiteMobile.ViewModels
                                     }
                                 }
                                 blogPost.Karma = likes - dislikes;
-                                blogPost.Author = "Created by " + blogPost.Author;
+                                blogPost.Author = blogPost.Author;
                                 BlogPostsView.Add(blogPost);
                             }
                         }
@@ -155,7 +138,7 @@ namespace BlogsiteMobile.ViewModels
                     else
                     {
                         BlogPostsView.Clear();
-                        List<BlogPost> BlogPosts = await BlogPostStore.GetAll();
+                        List<BlogPost> BlogPosts = await BlogPostStore.GetAllFromUser(_userId);
                         foreach (BlogPost blogPost in BlogPosts)
                         {
                             int likes = 0;
@@ -176,7 +159,7 @@ namespace BlogsiteMobile.ViewModels
                                 }
                             }
                             blogPost.Karma = likes - dislikes;
-                            blogPost.Author = "Created by " + blogPost.Author;
+                            blogPost.Author = blogPost.Author;
                             BlogPostsView.Add(blogPost);
                         }
                     }
@@ -302,7 +285,7 @@ namespace BlogsiteMobile.ViewModels
             blogDetailViewModel.Karma = likes - dislikes;
 
             //await Shell.Current.GoToAsync($"{nameof(BlogDetailPage)}?{nameof(BlogDetailViewModel.Id)}={blogPost.Id}");
-            await Shell.Current.Navigation.PushAsync(new BlogDetailPage()
+            await Shell.Current.Navigation.PushAsync(new UserBlogDetailPage()
             {
                 BindingContext = blogDetailViewModel
             });

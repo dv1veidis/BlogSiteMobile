@@ -11,7 +11,15 @@ namespace BlogsiteMobile.Services
         Task<int> AddBlogPost(T blogPost);
         Task<List<T>> GetAll(string? includeProperties = null);
         Task<List<T>> GetAllFromId(int id);
+        Task<List<T>> GetAllFromCategory(string category);
+        Task<List<T>> GetAllFromUser(int id);
+        Task<List<T>> GetAllFromUserIdAndCategory(int id, string category);
+        
+        Task<List<T>> GetAllFromUserAndCategory(string id, string category);
+        Task<List<T>> GetAllFromUserName(string id); 
+
         Task<T> GetFirstOrDefault(int id);
         Task<int> Remove(T entity);
+        void Update(T entity);
     }
 }

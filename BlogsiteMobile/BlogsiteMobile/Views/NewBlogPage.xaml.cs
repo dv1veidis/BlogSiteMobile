@@ -11,7 +11,6 @@ namespace BlogsiteMobile.Views
     public partial class NewBlogPage : ContentPage
     {
         public BlogPost BlogPost{ get; set; }
-
         public NewBlogPage()
         {
             InitializeComponent();

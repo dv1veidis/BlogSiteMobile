@@ -11,6 +11,7 @@ namespace BlogsiteMobile.ViewModels
     {
         private string text;
         private string title;
+        private string _selectedItem;
 
         public NewBlogViewModel()
         {
@@ -19,11 +20,23 @@ namespace BlogsiteMobile.ViewModels
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
+        public string SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged(nameof(SelectedItem));
+                }
+            }
+        }
 
         private bool ValidateSave()
         {
             return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(title);
+                && !String.IsNullOrWhiteSpace(title) && !String.IsNullOrWhiteSpace(SelectedItem);
         }
 
         public string Text
@@ -49,16 +62,23 @@ namespace BlogsiteMobile.ViewModels
 
         private async void OnSave()
         {
-            BlogPost blogPost = new BlogPost()
+            if (App.Current.Properties["UserName"] is string userName && App.Current.Properties["UserId"] is int userId)
             {
+
+                BlogPost blogPost = new BlogPost()
+                {
                 BlogPostTitle = BlogPostTitle,
                 Text = Text,
-            };
+                Author = (string)App.Current.Properties["UserName"],
+                ApplicationUserId = (int)App.Current.Properties["UserId"],
+                Category = _selectedItem
+                };
 
             if(1 == await BlogPostStore.AddBlogPost(blogPost))
             {
                 await Shell.Current.GoToAsync("..");
 
+            }
             }
             else
             {

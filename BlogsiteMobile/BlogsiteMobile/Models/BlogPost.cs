@@ -12,7 +12,7 @@ namespace BlogsiteMobile.Models
         public int Id { get; set; }
 
         [Required]
-        public string ApplicationUserId { get; set; }
+        public int ApplicationUserId { get; set; }
         [Required]
         public string Author { get; set; }
         [Required]
@@ -22,6 +22,8 @@ namespace BlogsiteMobile.Models
         public string Text { get; set; }
         public DateTime CreatedDateTime { get; set; } = DateTime.Now;
         [Required]
-        public int Category { get; set; }
+        public string Category { get; set; }
+        
+        public int Karma { get; set; }
     }
 }

@@ -34,6 +34,8 @@ namespace BlogsiteMobile.Services
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 Thread.CurrentPrincipal = principal;
                 App.Current.Properties["IsLoggedIn"] = true;
+                App.Current.Properties["UserId"] = user.Id;
+                App.Current.Properties["UserName"] = user.Name;
                 App.Current.SavePropertiesAsync();
             }
             return user;

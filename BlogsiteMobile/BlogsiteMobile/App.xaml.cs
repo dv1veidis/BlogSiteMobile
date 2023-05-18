@@ -38,6 +38,20 @@ namespace BlogsiteMobile
                 return blogPost;
             }
         }
+        private static ReactionRepository reaction;
+
+        public static ReactionRepository reactionRepository
+        {
+            get
+            {
+                if (reaction == null)
+                {
+                    reaction = new
+                    ReactionRepository(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Reactions.db3"));
+                }
+                return reaction;
+            }
+        }
         public App()
         {
             if (App.Current.Properties.ContainsKey("IsLoggedIn"))
@@ -60,7 +74,6 @@ namespace BlogsiteMobile
 
             App.Current.SavePropertiesAsync();
             InitializeComponent();
-            DependencyService.Register<MockDataStore>();
             DependencyService.Register<BlogPostRepository>();
             //MainPage = new AppShell();
         }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BlogsiteMobile.Services
 {
@@ -45,6 +46,46 @@ namespace BlogsiteMobile.Services
 
             return matchingPosts;
         }
+        public async Task<List<BlogPost>> GetAllFromCategory(string category)
+        {
+            AsyncTableQuery<BlogPost> query = null;
+            query = _connection.Table<BlogPost>().Where(u => u.Category == category);
+            List<BlogPost> matchingPosts = await query.ToListAsync();
+
+            return matchingPosts;
+        }
+        public async Task<List<BlogPost>> GetAllFromUser(int id)
+        {
+            AsyncTableQuery<BlogPost> query = null;
+            query = _connection.Table<BlogPost>().Where(u => u.ApplicationUserId == id);
+            List<BlogPost> matchingPosts = await query.ToListAsync();
+
+            return matchingPosts;
+        }
+        public async Task<List<BlogPost>> GetAllFromUserIdAndCategory(int id, string category)
+        {
+            AsyncTableQuery<BlogPost> query = null;
+            query = _connection.Table<BlogPost>().Where(u => u.ApplicationUserId == id && u.Category == category);
+            List<BlogPost> matchingPosts = await query.ToListAsync();
+
+            return matchingPosts;
+        }
+        public async Task<List<BlogPost>> GetAllFromUserAndCategory(string username, string category)
+        {
+            AsyncTableQuery<BlogPost> query = null;
+            query = _connection.Table<BlogPost>().Where(u => u.Author == username && u.Category == category);
+            List<BlogPost> matchingPosts = await query.ToListAsync();
+
+            return matchingPosts;
+        }
+        public async Task<List<BlogPost>> GetAllFromUserName(string username)
+        {
+            AsyncTableQuery<BlogPost> query = null;
+            query = _connection.Table<BlogPost>().Where(u => u.Author == username);
+            List<BlogPost> matchingPosts = await query.ToListAsync();
+
+            return matchingPosts;
+        }
 
         public Task<BlogPost> GetFirstOrDefault(int id)
         {
@@ -57,6 +98,25 @@ namespace BlogsiteMobile.Services
         public Task<int> Remove(BlogPost entity)
         {
              return _connection.DeleteAsync(entity);
+        }
+        public async void Update(BlogPost obj)
+        {
+            try
+            {
+                BlogPost blogPost = await GetFirstOrDefault(obj.Id);
+                if (blogPost != null)
+                {
+
+                    blogPost.BlogPostTitle = obj.BlogPostTitle;
+                    blogPost.Text = obj.Text;
+                    blogPost.Category = obj.Category;
+                    await _connection.UpdateAsync(blogPost);
+                }
+
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

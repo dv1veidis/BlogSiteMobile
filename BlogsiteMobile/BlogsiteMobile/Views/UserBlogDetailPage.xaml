@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlogsiteMobile.Views.UserBlogDetailPage">
+
+    <StackLayout Spacing="10" Padding="15">
+        <Entry Grid.Column="0" Text="{Binding BlogPostTitle, Mode=TwoWay}" FontSize="Medium" BackgroundColor="#FFFFFF" Placeholder="Title"/>
+        <Editor Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" BackgroundColor="#FFFFFF" HeightRequest="150" Placeholder="Text"/>
+        <Picker Title="{Binding Category}" SelectedItem="{Binding SelectedItem}" >
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Sport</x:String>
+                    <x:String>News</x:String>
+                    <x:String>Fiction</x:String>
+                    <x:String>Personal</x:String>
+                    <x:String>Science</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Button Text="Edit" Command="{Binding EditCommand}" BackgroundColor="Green" TextColor="#FFFFFF" HorizontalOptions="FillAndExpand" Margin="0,10,0,0" />
+        <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" TextColor="#FFFFFF" HorizontalOptions="FillAndExpand" Margin="0,10,0,0" />
+    </StackLayout>
+</ContentPage>

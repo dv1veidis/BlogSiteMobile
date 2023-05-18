@@ -11,7 +11,6 @@ namespace BlogsiteMobile.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IBlogPostRepository<BlogPost> BlogPostStore => DependencyService.Get<IBlogPostRepository<BlogPost>>();
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;
         public bool IsBusy
